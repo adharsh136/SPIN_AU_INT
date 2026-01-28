@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management System</title>
+
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- 
+      Loading components sequentially. 
+      Because we are not using a build tool, we load them into the browser's global scope.
+      Use the local server (start_server.bat) to view this.
+    -->
+    <script type="text/babel" src="./src/components/WorkloadManager.jsx"></script>
+    <script type="text/babel" src="./src/components/TaskModal.jsx"></script>
+    <script type="text/babel" src="./src/components/TaskTable.jsx"></script>
+    <script type="text/babel" src="./src/App.jsx"></script>
+</body>
+
+</html>
