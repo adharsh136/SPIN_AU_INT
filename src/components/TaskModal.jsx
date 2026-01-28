@@ -37,6 +37,29 @@ const TaskModal = ({ task, onClose, onSave }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        // Validation: End Date cannot be before Start Date
+        if (formData.startDate && formData.endDate && formData.endDate < formData.startDate) {
+            alert("Task End Date cannot be before Start Date.");
+            return;
+        }
+
+        // Validation: Workloads
+        for (let wl of formData.workloads) {
+            if (wl.startDate && wl.endDate && wl.endDate < wl.startDate) {
+                alert("Workload End Date cannot be before Start Date.");
+                return;
+            }
+            if (formData.startDate && (wl.startDate < formData.startDate)) {
+                alert(`Workload cannot start before Task Start Date (${formData.startDate})`);
+                return;
+            }
+            if (formData.endDate && (wl.endDate > formData.endDate)) {
+                alert(`Workload cannot end after Task End Date (${formData.endDate})`);
+                return;
+            }
+        }
+
         onSave(formData);
     };
 
@@ -65,7 +88,15 @@ const TaskModal = ({ task, onClose, onSave }) => {
                         </div>
                         <div className="form-group" style={{ flex: 1 }}>
                             <label>End Date</label>
-                            <input type="date" name="endDate" className="form-control" value={formData.endDate} onChange={handleChange} required />
+                            <input
+                                type="date"
+                                name="endDate"
+                                className="form-control"
+                                value={formData.endDate}
+                                onChange={handleChange}
+                                min={formData.startDate}
+                                required
+                            />
                         </div>
                     </div>
 
@@ -102,6 +133,8 @@ const TaskModal = ({ task, onClose, onSave }) => {
                     <WorkloadManager
                         workloads={formData.workloads}
                         onChange={(newWorkloads) => setFormData(prev => ({ ...prev, workloads: newWorkloads }))}
+                        taskStartDate={formData.startDate}
+                        taskEndDate={formData.endDate}
                     />
 
                     <div className="actions">
