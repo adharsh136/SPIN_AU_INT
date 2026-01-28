@@ -1,9 +1,10 @@
 # SPIN_AU_INT
-Solution to technical challenge presented in the internship interview for SPIN AU Global 
+Solution to the technical challenge presented in the software development internship interview at SPIN AU Global 
 
 # Task Management System with Workloads
 
-A React-based Task Management System designed to handle "Workloads"—specific active ranges within a task duration. Built as a separate modular application that runs directly in the browser.
+A React-based Task Management System designed to handle "Workloads"—specific active ranges within a task duration.
+Built as a separate modular application that runs directly in the browser.
 
 ## 🚀 Setup & How to Run
 **Prerequisite**: You need Python installed in your environment (or VS Code Live Server).
