@@ -1,4 +1,4 @@
-const WorkloadManager = ({ workloads, onChange }) => {
+const WorkloadManager = ({ workloads, onChange, taskStartDate, taskEndDate }) => {
     const addWorkload = () => {
         onChange([...workloads, { id: crypto.randomUUID(), startDate: "", endDate: "" }]);
     };
@@ -31,6 +31,8 @@ const WorkloadManager = ({ workloads, onChange }) => {
                                 type="date"
                                 className="form-control"
                                 value={wl.startDate}
+                                min={taskStartDate}
+                                max={taskEndDate}
                                 onChange={(e) => updateWorkload(idx, 'startDate', e.target.value)}
                             />
                         </div>
@@ -40,6 +42,8 @@ const WorkloadManager = ({ workloads, onChange }) => {
                                 type="date"
                                 className="form-control"
                                 value={wl.endDate}
+                                min={wl.startDate || taskStartDate}
+                                max={taskEndDate}
                                 onChange={(e) => updateWorkload(idx, 'endDate', e.target.value)}
                             />
                         </div>
